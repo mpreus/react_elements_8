@@ -15,7 +15,7 @@ class Shop extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Elementy garderoby wg Twoich upodobań</h2>
+				<h2>Sugerowane elementy garderoby</h2>
   				<ShopItem title="Skarpetki" description="Bawełniane w czerwoną kratę" price="45" onBuy={this.handleBuy}/>
   				<ShopItem title="Koszula" description="Jedwabna, z kołnierzykiem typu straight, kremowa" price="245" onBuy={this.handleBuy}/>
   				<ShopItem title="Krawat" description="Wzorzysty, żakardowy, miodowy" price="167" onBuy={this.handleBuy}/>
@@ -25,9 +25,9 @@ class Shop extends React.Component {
   				<ShopItem title="Spinki do mankietów" description="W formie okrętowego koła ratunkowego" price="139" onBuy={this.handleBuy}/>
   				<h2>Zawartość koszyka</h2>
   				<ul> 
-    				{this.state.shoppingList.map( (title, idx, price) => <li key={idx}>{title}</li>)}
+    				{ this.state.shoppingList.length > 0 ? this.state.shoppingList.map( (title, idx, price) => <li key={idx}>{title}</li>) : "Twoj koszyk jest pusty" }
   				</ul>     {/*dla każdego przedmiotu (i indeksu) utwórz 'li' z atrybutami*/}
-  				{ this.state.shoppingList.length > 0 ? <button onClick={this.emptyBasket}>Opróżnij koszyk</button> : "" }
+  				{ this.state.shoppingList.length > 0 ? <button onClick={this.emptyBasket} className="emptyBasket">Opróżnij koszyk</button> : "" }
 			</div>		/* jeśli pojawi się jakikolwiek produkct w koszyku, renderuj przycisk opróżniający listę */
 		);
 	}
@@ -41,11 +41,11 @@ class ShopItem extends React.Component {
 	} 
 	render() {
 		return (
-			<div>
+			<div className="fashionItem">
 				<h3>{this.props.title}</h3>
 				<p>{this.props.description}</p>
 				<span>{this.props.price} zł </span>
-				<button onClick={this.handleClick}>KUP</button>
+				<button onClick={this.handleClick}>Kupuję</button>
 			</div>
 		);
 	}
